@@ -1,0 +1,18 @@
+#
+# @lc app=leetcode.cn id=461 lang=python3
+#
+# [461] 汉明距离
+#
+
+# @lc code=start
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        # return bin(x ^ y)[2:].count('1')
+        z = x ^ y
+        res = 0
+        while z:
+            res += (z & 1)
+            z >>= 1
+        return res
+# @lc code=end
+
