@@ -1,6 +1,6 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # 桶排序（直接使用dict的value排序的方法见初、中级算法）
+        # 桶排序（直接使用dict统计频率，再按频率（value）排序的方法见初、中级算法）
         freq = {}  # dict记录数字出现频率
         for i in nums:
             if i in freq: freq[i] += 1
