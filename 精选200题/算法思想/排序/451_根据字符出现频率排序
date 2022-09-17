@@ -1,0 +1,18 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        # 和347思路相同
+        freq = {}
+        for i in s:
+            if i in freq: freq[i] += 1
+            else: freq[i] = 1
+        bucket = [None] * (len(s) + 1)
+        for i in freq.keys():
+            if not bucket[freq[i]]: bucket[freq[i]] = [i]
+            else: bucket[freq[i]].append(i)
+        ans = []
+        for i in range(len(bucket) - 1, -1, -1):
+            if not bucket[i]: continue
+            for c in bucket[i]:  # 唯一不同的是字母需要全部出现。所以假如e频率为3，ans要【连着】加入3次e
+                for j in range(i): 
+                    ans.append(c)
+        return ''.join(ans)
