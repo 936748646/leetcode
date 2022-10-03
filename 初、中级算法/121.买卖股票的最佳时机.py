@@ -10,12 +10,12 @@ class Solution:
         if not prices or len(prices) == 0:
             return 0
         n = len(prices)
-        dp0 = 0
-        dp1 = -prices[0]
+        dp0 = 0  # 卖出
+        dp1 = -prices[0]  # 买入
         for i in range(1, n):
-            dp0 = max(dp0, dp1 + prices[i])
-            dp1 = max(dp1, -prices[i])
-        return dp0
+            dp0 = max(dp0, dp1 + prices[i])  # 当天不卖或卖
+            dp1 = max(dp1, -prices[i])  # 当天不买或买
+        return dp0  # 最后肯定是要卖出
 
 # @lc code=end
 
