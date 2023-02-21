@@ -24,3 +24,9 @@ END
 select t1.score 'score', count(distinct t2.score) 'rank' 
 from Scores t1, Scores t2 where t1.score <= t2.score group by t1.id 
 order by t1.score desc;
+
+
+# 180. 连续出现的数字
+# Write your MySQL query statement below
+select distinct l1.Num ConsecutiveNums from Logs l1, Logs l2, Logs l3 
+where l1.Id + 1 = l2.Id and l1.Id + 2 = l3.Id and l1.Num = l2.Num and l2.Num = l3.Num;
