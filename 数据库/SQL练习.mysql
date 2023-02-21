@@ -1,3 +1,47 @@
+# 595. 大的国家
+select name, population, area from World where area >= 3000000 or population >=25000000;
+
+
+# 627. 变更性别
+update salary set sex = if(sex = 'm', 'f', 'm');
+
+
+# 620. 有趣的电影
+select * from cinema where mod(id, 2) = 1 and description != 'boring' order by rating desc;
+
+
+# 596. 超过5名学生的课
+select class from Courses group by class having count(student) >= 5;
+
+
+# 182. 查找重复的电子邮箱
+select Email from Person group by Email having count(Id) > 1;
+
+
+# 196. 删除重复的电子邮箱
+# Please write a DELETE statement and DO NOT write a SELECT statement.
+# Write your MySQL query statement below
+delete from Person where id not in (select id from (select min(id) as id from Person group by email) t);
+
+
+# 175. 组合两个表
+select p.firstName, p.lastName, a.city, a.state from Person p left join Address a on p.personId = a.personId;
+
+
+# 181. 超过经理收入的员工
+select e1.name Employee from Employee e1 join Employee e2 on e1.managerId = e2.id where e1.salary > e2.salary;
+
+
+# 183. 从不订购的客户
+select Name Customers from Customers where Id not in (select CustomerId Id from Orders);
+
+
+# 184. 部门工资最高的员工
+select d.name Department, e.name Employee, e.salary Salary from Employee e join Department d on e.departmentId=d.id 
+where (e.departmentId, e.salary) in 
+(select departmentId, max(salary) from Employee group by departmentId);
+
+
 # 176. 第二高的薪水
 # Write your MySQL query statement below
 # ifnull(expression, value)：如果expression为null，则返回参数值value
@@ -30,3 +74,8 @@ order by t1.score desc;
 # Write your MySQL query statement below
 select distinct l1.Num ConsecutiveNums from Logs l1, Logs l2, Logs l3 
 where l1.Id + 1 = l2.Id and l1.Id + 2 = l3.Id and l1.Num = l2.Num and l2.Num = l3.Num;
+
+
+# 626. 换座位
+select s1.id id, ifnull(s2.student, s1.student) student from Seat s1 left join Seat s2 
+on s1.id = if(mod(s1.id, 2) = 1, s2.id - 1, s2.id + 1) order by s1.id;
