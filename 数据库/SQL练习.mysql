@@ -3,3 +3,15 @@
 # ifnull(expression, value)：如果expression为null，则返回参数值value
 # limit num1,num2 ：从第num1行开始输出num2条记录
 select ifnull((select distinct salary from Employee order by salary desc limit 1, 1), null) SecondHighestSalary;
+
+
+# 177. 第N高的薪水
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  set N = N - 1;
+  RETURN (     
+      # Write your MySQL query statement below.
+      # limit后只能接正整数或单一变量，不能用n-1（表达式）
+      select (select distinct salary from Employee order by salary desc limit N, 1)
+  );
+END
