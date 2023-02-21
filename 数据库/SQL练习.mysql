@@ -15,3 +15,12 @@ BEGIN
       select (select distinct salary from Employee order by salary desc limit N, 1)
   );
 END
+
+
+# 178. 分数排名
+# Write your MySQL query statement below
+# select score, count(id) from Scores group by score order by score desc;
+# 使用表连接找到score对应的大于等于它的score个数（distinct），即为排名
+select t1.score 'score', count(distinct t2.score) 'rank' 
+from Scores t1, Scores t2 where t1.score <= t2.score group by t1.id 
+order by t1.score desc;
