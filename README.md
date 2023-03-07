@@ -2,4 +2,4 @@
 Personal exercise record.
 
 ACM模式输入输出练习：
-https://ac.nowcoder.com/acm/contest/5652。
+参考 牛客竞赛->OJ在线编程常见输入输出练习场
